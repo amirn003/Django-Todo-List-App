@@ -1,7 +1,11 @@
+import datetime
 from django.shortcuts import render
 from django.urls import path
 from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
-    return HttpResponse("New Year App")
+    now = datetime.datetime.now()
+    return render(request, "newyear/index.html", {
+        "newyear": now.month == 1 and now.day == 1
+    })
